@@ -3,15 +3,17 @@
  - name: hackathon
    gather_facts: no
    connection: local
-   hosts: n9396-1
+   hosts: switch.devnet.com
 
+   vars:
+     user_identity: 0
 
    tasks:
 
-     - nxos_interface: interface={{ interface_name }} access_vlan=10 name=secure_vlan host={{ inventory_hostname}}
+     - nxos_switchport: interface={{ interface }} mode=access access_vlan=10 host={{ inventory_hostname}}
        when: user_identity == 0
 
-     - nxos_interface: interface={{ interface_name }} access_vlan=20 name=public_vlan host={{ inventory_hostname}}
+     - nxos_switchport: interface={{ interface }} mode=access access_vlan=20 host={{ inventory_hostname}}
        when: user_identity != 0
 
 
