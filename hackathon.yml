@@ -7,7 +7,7 @@
 
    tasks:
 
-     - debug: var={{ user_identity}}
+     - debug: var={{ iot }}
      - nxos_switchport: interface={{ interface }} mode=access access_vlan=10 host={{ inventory_hostname}} username={{ username }} password={{ password }}
        when: iot == 0
 
