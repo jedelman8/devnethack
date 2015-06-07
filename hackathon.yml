@@ -1,0 +1,17 @@
+---
+
+ - name: hackathon
+   gather_facts: no
+   connection: local
+   hosts: n9396-1
+
+
+   tasks:
+
+     - nxos_interface: interface={{ interface_name }} access_vlan=10 name=secure_vlan host={{ inventory_hostname}}
+       when: user_identity == 0
+
+     - nxos_interface: interface={{ interface_name }} access_vlan=20 name=public_vlan host={{ inventory_hostname}}
+       when: user_identity != 0
+
+
