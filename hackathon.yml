@@ -5,15 +5,12 @@
    connection: local
    hosts: switch.devnet.com
 
-   vars:
-     user_identity: 0
-
    tasks:
 
-     - nxos_switchport: interface={{ interface }} mode=access access_vlan=10 host={{ inventory_hostname}}
+     - nxos_switchport: interface={{ interface }} mode=access access_vlan=10 host={{ inventory_hostname}} username={{ username }} password={{ password }}
        when: user_identity == 0
 
-     - nxos_switchport: interface={{ interface }} mode=access access_vlan=20 host={{ inventory_hostname}}
+     - nxos_switchport: interface={{ interface }} mode=access access_vlan=20 host={{ inventory_hostname}} username={{ username }} password={{ password }}
        when: user_identity != 0
 
 
